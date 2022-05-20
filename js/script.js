@@ -87,6 +87,9 @@ function roundResult(num) {
     return Math.round(num * 1000) / 1000;
 }
 
+
+// Solution from: https://gist.github.com/jiggzson/b5f489af9ad931e3d186
+
 let scientificToDecimal = function (num) {
     let nsign = Math.sign(num);
     //remove the sign
@@ -122,6 +125,8 @@ let scientificToDecimal = function (num) {
 
     return nsign < 0 ? '-'+num : num;
 };
+
+//
 
 function equalFunction() {
     if(flagCheck()) return;
