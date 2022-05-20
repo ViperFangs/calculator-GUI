@@ -16,7 +16,7 @@ let divisionFlag = 0;
 
 function numberButtonFunction(event){
     const numberClicked = this.value;
-    if(outputScreen.textContent == 0) outputScreen.textContent = '';
+    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
     displayNumber = outputScreen.textContent += numberClicked;
 }
 
@@ -32,6 +32,8 @@ function addFunction(event){
 
     if(!flagCheck()) return
 
+    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
+
     displayNumber = outputScreen.textContent += ' + ';
     addFlag = 1;
     
@@ -40,6 +42,8 @@ function addFunction(event){
 function subtractFunction(event){
 
     if(!flagCheck()) return
+
+    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
 
     displayNumber = outputScreen.textContent += ' - ';
     subtractFlag = 1;
@@ -50,6 +54,8 @@ function multiplyFunction(event){
 
     if(!flagCheck()) return
 
+    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
+
     displayNumber =outputScreen.textContent += ' * ';
     multiplyFlag = 1;
     
@@ -58,6 +64,8 @@ function multiplyFunction(event){
 function divisionFunction(event){
 
     if(!flagCheck()) return
+
+    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
 
     displayNumber = outputScreen.textContent += ' % ';
     divisionFlag = 1;
@@ -75,13 +83,16 @@ function whichFlag(){
     if(divisionFlag == 1) return '%';
 }
 
+function roundToTwo(num) {
+    return +(Math.round(num + "e+5")  + "e-5");
+}
+
 function equalFunction() {
     if(flagCheck()) return;
 
     let output = 0;
 
     output = displayNumber.split(' ' + whichFlag() + ' ');
-    console.log(output);
 
 if(whichFlag() == '+')
 {
@@ -103,7 +114,7 @@ if(whichFlag() == '%')
     output = parseInt(output[0]) / parseInt(output[1]);
 }
 
-    displayNumber = outputScreen.textContent = Math.round(output);
+    displayNumber = outputScreen.textContent = roundToTwo(output);
 
     addFlag = 0;
     subtractFlag = 0;
