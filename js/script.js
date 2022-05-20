@@ -7,7 +7,7 @@ const multiplyButton = document.getElementById('multiply');
 const divisionButton = document.getElementById('division');
 const equalButton = document.getElementById('equal');
 
-let displayNumber = BigInt(0);
+let displayNumber = 0;
 let newDisplayNumber = 0;
 let addFlag = 0;
 let subtractFlag = 0;
