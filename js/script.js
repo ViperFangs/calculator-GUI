@@ -83,8 +83,8 @@ function whichFlag(){
     if(divisionFlag == 1) return '%';
 }
 
-function roundToTwo(num) {
-    return +(Math.round(num + "e+5")  + "e-5");
+function roundResult(num) {
+    return Math.round(number * 1000) / 1000;
 }
 
 function equalFunction() {
@@ -114,7 +114,7 @@ if(whichFlag() == '%')
     output = parseInt(output[0]) / parseInt(output[1]);
 }
 
-    displayNumber = outputScreen.textContent = roundToTwo(output);
+    displayNumber = outputScreen.textContent = roundResult(output);
 
     addFlag = 0;
     subtractFlag = 0;
