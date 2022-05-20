@@ -12,25 +12,27 @@ body{
 #calculator-container{
     display: flex;
     flex-direction: column;
-    height: 50%;
-    width: 50%;
+    height: 500px;
+    width: 500px;
 }
 
 #output-container{
     display: flex;
     align-items: center;
-    text-align: right;
+    justify-content: flex-end;
     background-color: #2B2D42;
     flex: 1;
-    width: auto;
+    height: auto;
 }
 
 #output-text{
+    text-align: right;
     flex: 1;
-    margin: 1em 0.5em;
+    margin: 0 0.5em;
     font-size: 2.75em;
     color: #EDF2F4;
     font-weight: 700;
+    max-width: 100px;
 }
 
 .bottom-container{
