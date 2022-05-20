@@ -12,15 +12,70 @@ body{
     display: flex;
     flex-direction: column;
     height: auto;
+    width: 200px;
 }
 
 #output-container{
-    flex: 1;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    text-align: right;
+    background-color: #2B2D42;
+    flex: 1;
 }
 
 #output-text{
-margin: 1em 0.75em;
+flex: 1;
+margin: 0.75em 0.75em;
+font-size: 1.75em;
+color: #EDF2F4;
+}
+
+.bottom-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+#bottom-right-container,
+#bottom-left-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+#bottom-left-container{
+    flex: 3.5;
+}
+
+#bottom-right-container{
+    flex:1;
+}
+
+#bottom-left-row-1,
+#bottom-left-row-2,
+#bottom-left-row-3,
+#bottom-left-row-4{
+    display: flex;
+}
+
+#zero{
+    flex: 1;
+}
+
+#AC,
+#division{
+    flex:1;
+}
+
+.numbers{
+    flex: 1;
+}
+
+button{
+    background-color: #8D99AE;
+    padding: 0.75em;
+    box-shadow: none;
+    border: none;
 }
