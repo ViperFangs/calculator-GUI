@@ -16,6 +16,7 @@ body {
 	height: 50%;
 	width: 50%;
 	overflow-wrap: break-word;
+	margin-top: auto;
 }
 
 #output-container {
@@ -111,4 +112,21 @@ button {
 	padding: 0.75em;
 	box-shadow: none;
 	border: none;
+}
+
+#footer-container {
+	margin-top: auto;
+	height: 10%;
+	background-color: #14213d;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+	gap: 4px;
+	border-radius: 0.5em;
+}
+
+a {
+	color: #3e92cc;
 }
