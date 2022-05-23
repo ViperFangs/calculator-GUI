@@ -14,156 +14,145 @@ let subtractFlag = 0;
 let multiplyFlag = 0;
 let divisionFlag = 0;
 
-function numberButtonFunction(event){
-    const numberClicked = this.value;
-    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
-    displayNumber = outputScreen.textContent += numberClicked;
+function numberButtonFunction(event) {
+	const numberClicked = this.value;
+	if (outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' || outputScreen.textContent == 'Infinity')
+		outputScreen.textContent = '';
+	displayNumber = outputScreen.textContent += numberClicked;
 }
 
-function acButtonFunction(){
-    outputScreen.textContent = '0' ;
-    addFlag = 0;
-    subtractFlag = 0;
-    multiplyFlag = 0;
-    divisionFlag = 0;
+function acButtonFunction() {
+	outputScreen.textContent = '0';
+	addFlag = 0;
+	subtractFlag = 0;
+	multiplyFlag = 0;
+	divisionFlag = 0;
 }
 
-function addFunction(event){
+function addFunction(event) {
+	if (!flagCheck()) return;
 
-    if(!flagCheck()) return
+	if (outputScreen.textContent == 0 || outputScreen.textContent == 'NaN') outputScreen.textContent = '';
 
-    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
-
-    displayNumber = outputScreen.textContent += ' + ';
-    addFlag = 1;
-    
+	displayNumber = outputScreen.textContent += ' + ';
+	addFlag = 1;
 }
 
-function subtractFunction(event){
+function subtractFunction(event) {
+	if (!flagCheck()) return;
 
-    if(!flagCheck()) return
+	if (outputScreen.textContent == 0 || outputScreen.textContent == 'NaN') outputScreen.textContent = '';
 
-    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
-
-    displayNumber = outputScreen.textContent += ' - ';
-    subtractFlag = 1;
-    
+	displayNumber = outputScreen.textContent += ' - ';
+	subtractFlag = 1;
 }
 
-function multiplyFunction(event){
+function multiplyFunction(event) {
+	if (!flagCheck()) return;
 
-    if(!flagCheck()) return
+	if (outputScreen.textContent == 0 || outputScreen.textContent == 'NaN') outputScreen.textContent = '';
 
-    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
-
-    displayNumber =outputScreen.textContent += ' * ';
-    multiplyFlag = 1;
-    
+	displayNumber = outputScreen.textContent += ' * ';
+	multiplyFlag = 1;
 }
 
-function divisionFunction(event){
+function divisionFunction(event) {
+	if (!flagCheck()) return;
 
-    if(!flagCheck()) return
+	if (outputScreen.textContent == 0 || outputScreen.textContent == 'NaN') outputScreen.textContent = '';
 
-    if(outputScreen.textContent == 0 || outputScreen.textContent == 'NaN' ) outputScreen.textContent = '';
-
-    displayNumber = outputScreen.textContent += ' % ';
-    divisionFlag = 1;
-    
+	displayNumber = outputScreen.textContent += ' % ';
+	divisionFlag = 1;
 }
 
 function flagCheck() {
-    return addFlag == 0 && subtractFlag == 0 && multiplyFlag == 0 && divisionFlag == 0;
+	return addFlag == 0 && subtractFlag == 0 && multiplyFlag == 0 && divisionFlag == 0;
 }
 
-function whichFlag(){
-    if(addFlag == 1) return '+';
-    if(subtractFlag == 1) return '-';
-    if(multiplyFlag == 1) return '*';
-    if(divisionFlag == 1) return '%';
+function whichFlag() {
+	if (addFlag == 1) return '+';
+	if (subtractFlag == 1) return '-';
+	if (multiplyFlag == 1) return '*';
+	if (divisionFlag == 1) return '%';
 }
 
 function roundResult(num) {
-    return Math.round(num * 1000) / 1000;
+	return Math.round(num * 1000) / 1000;
 }
-
 
 // Solution from: https://gist.github.com/jiggzson/b5f489af9ad931e3d186
 
-let scientificToDecimal = function (num) {
-    let nsign = Math.sign(num);
-    //remove the sign
-    num = Math.abs(num);
-    //if the number is in scientific notation remove it
-    if (/\d+\.?\d*e[\+\-]*\d+/i.test(num)) {
-        let zero = '0',
-                parts = String(num).toLowerCase().split('e'), //split into coeff and exponent
-                e = parts.pop(), //store the exponential part
-                l = Math.abs(e), //get the number of zeros
-                sign = e / l,
-                coeff_array = parts[0].split('.');
-        if (sign === -1) {
-            l = l - coeff_array[0].length;
-            if (l < 0) {
-              num = coeff_array[0].slice(0, l) + '.' + coeff_array[0].slice(l) + (coeff_array.length === 2 ? coeff_array[1] : '');
-            } 
-            else {
-              num = zero + '.' + new Array(l + 1).join(zero) + coeff_array.join('');
-            }
-        } 
-        else {
-            let dec = coeff_array[1];
-            if (dec)
-                l = l - dec.length;
-            if (l < 0) {
-              num = coeff_array[0] + dec.slice(0, l) + '.' + dec.slice(l);
-            } else {
-              num = coeff_array.join('') + new Array(l + 1).join(zero);
-            }
-        }
-    }
+let scientificToDecimal = function(num) {
+	let nsign = Math.sign(num);
+	//remove the sign
+	num = Math.abs(num);
+	//if the number is in scientific notation remove it
+	if (/\d+\.?\d*e[\+\-]*\d+/i.test(num)) {
+		let zero = '0',
+			parts = String(num).toLowerCase().split('e'), //split into coeff and exponent
+			e = parts.pop(), //store the exponential part
+			l = Math.abs(e), //get the number of zeros
+			sign = e / l,
+			coeff_array = parts[0].split('.');
+		if (sign === -1) {
+			l = l - coeff_array[0].length;
+			if (l < 0) {
+				num =
+					coeff_array[0].slice(0, l) +
+					'.' +
+					coeff_array[0].slice(l) +
+					(coeff_array.length === 2 ? coeff_array[1] : '');
+			} else {
+				num = zero + '.' + new Array(l + 1).join(zero) + coeff_array.join('');
+			}
+		} else {
+			let dec = coeff_array[1];
+			if (dec) l = l - dec.length;
+			if (l < 0) {
+				num = coeff_array[0] + dec.slice(0, l) + '.' + dec.slice(l);
+			} else {
+				num = coeff_array.join('') + new Array(l + 1).join(zero);
+			}
+		}
+	}
 
-    return nsign < 0 ? '-'+num : num;
+	return nsign < 0 ? '-' + num : num;
 };
 
 //
 
 function equalFunction() {
-    if(flagCheck()) return;
+	if (flagCheck()) return;
 
-    let output = 0;
+	let output = 0;
 
-    output = displayNumber.split(' ' + whichFlag() + ' ');
+	output = displayNumber.split(' ' + whichFlag() + ' ');
 
-if(whichFlag() == '+')
-{
-    output = scientificToDecimal(output[0]) + scientificToDecimal(output[1]);
+	if (whichFlag() == '+') {
+		output = scientificToDecimal(output[0]) + scientificToDecimal(output[1]);
+	}
+
+	if (whichFlag() == '-') {
+		output = scientificToDecimal(output[0]) - scientificToDecimal(output[1]);
+	}
+
+	if (whichFlag() == '*') {
+		output = scientificToDecimal(output[0]) * scientificToDecimal(output[1]);
+	}
+
+	if (whichFlag() == '%') {
+		output = scientificToDecimal(output[0]) / scientificToDecimal(output[1]);
+	}
+
+	displayNumber = outputScreen.textContent = roundResult(output);
+
+	addFlag = 0;
+	subtractFlag = 0;
+	multiplyFlag = 0;
+	divisionFlag = 0;
 }
 
- if(whichFlag() == '-')
-{
-    output = scientificToDecimal(output[0]) - scientificToDecimal(output[1]);
-} 
-
-if(whichFlag() == '*')
-{
-    output = scientificToDecimal(output[0]) * scientificToDecimal(output[1]);
-}
-
-if(whichFlag() == '%')
-{
-    output = scientificToDecimal(output[0]) / scientificToDecimal(output[1]);
-}
-
-    displayNumber = outputScreen.textContent = roundResult(output);
-
-    addFlag = 0;
-    subtractFlag = 0;
-    multiplyFlag = 0;
-    divisionFlag = 0;
-}
-
-numberButtons.forEach(button => button.addEventListener('click', numberButtonFunction));
+numberButtons.forEach((button) => button.addEventListener('click', numberButtonFunction));
 
 acButton.addEventListener('click', acButtonFunction);
 
